@@ -1,26 +1,32 @@
-import React from 'react'
-import { observer } from "mobx-react-lite"
-import { values } from "mobx";
 
-import TodoView from './todo'
+import ToDoList from './components/ToDoList'
+import GlobalStyle from './globalStyles';
+import { RootStore } from './store/globalStore';
 
-const randomId = () => Math.floor(Math.random() * 1000).toString(36);
+const store = RootStore.create({
+  users: {},
+  todos: {
+    "1": {
+      name: "Eat a cake",
+      done: true,
+    },
+    "2": {
+      name: 'run',
+      done: false,
+    }
+  }
+});
 
-type AppType = {
-  store: any
+const App =() => {
+ 
+return (
+  <>
+    <GlobalStyle />
+    <ToDoList store={store} />
+  </>
+);
 }
 
-const AppView =({store} : AppType) => (
-  <div>
-    <button onClick={e => store.addTodo(randomId(), "New Task")}>
-      Add Task
-    </button>
-    {values(store.todos).map(todo => (
-      <TodoView todo={todo} />
-    ))}
-  </div>
-);
-
-export default observer(AppView)
+export default App
 
 

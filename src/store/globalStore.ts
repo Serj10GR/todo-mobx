@@ -4,7 +4,7 @@ const Todo = types
   .model({
     name: types.optional(types.string, ""),
     done: types.optional(types.boolean, false),
-    priority: types.enumeration(["low", "medium", "hight"])
+    priority: types.optional(types.string, "")
   })
   .actions(self => {
     function setName(newName) {
@@ -29,7 +29,7 @@ export const RootStore = types
   })
   .actions(self => {
     function addTodo(id, name, priority) {
-      self.todos.set(id, Todo.create({ name, priority }));
+      self.todos.set(id, Todo.create({ name, priority}));
     }
 
     return { addTodo };
