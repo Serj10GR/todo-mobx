@@ -1,6 +1,6 @@
 import { types } from "mobx-state-tree";
 
-const Todo = types
+export const Todo = types
   .model({
     name: types.optional(types.string, ""),
     done: types.optional(types.boolean, false),
@@ -14,13 +14,23 @@ const Todo = types
     function toggle() {
       self.done = !self.done;
     }
+    function setPriority(newPriority) {
+      self.priority = newPriority
+    }
 
-    return { setName, toggle };
+    return { setName, toggle, setPriority };
   });
+
+
+
 
 const User = types.model({
   name: types.optional(types.string, "")
 });
+
+
+
+
 
 export const RootStore = types
   .model({

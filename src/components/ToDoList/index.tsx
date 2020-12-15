@@ -10,7 +10,7 @@ import {ListWrapper} from './styled'
 const ToDoList = ({store}) => {
   return (
     <ListWrapper>
-      <Header store={store} />
+      <Header addTodo={store.addTodo} />
       {values(store.todos).map(todo => (
         <ToDo todo={todo} />
       ))}

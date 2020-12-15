@@ -1,7 +1,7 @@
-import { useState } from 'react'
+
 import { observer } from "mobx-react-lite"
 
-
+import { Todo } from '../../../store/globalStore'
 import {
   HeaderWrapper,
   Form,
@@ -11,28 +11,31 @@ import {
   Button
 } from './styled'
 
+const todo = Todo.create({})
 
 const randomId = () => Math.floor(Math.random() * 1000).toString(36);
 
-const Header = ({store}) => {
-  const [todoName, setToDoName] = useState('')
-  const [priority, setPriority] = useState('')
+type HeaderProps = {
+  addTodo: any
+}
+const Header = ({addTodo}: HeaderProps) => {
+
   return (
     <HeaderWrapper>
       <Form onSubmit={e => {
         e.preventDefault()
-        store.addTodo(randomId(), todoName, priority)
+        addTodo(randomId(), todo.name, todo.priority)
       }}>
         <Input 
           required 
           type="text" 
-          value={todoName} 
-          onChange={e => setToDoName(e.target.value)}  
+          value={todo.name} 
+          onChange={e => todo.setName(e.target.value)}  
         />
         <Select 
           required 
           name="priority" 
-          onChange={e => setPriority(e.target.value)}
+          onChange={e => todo.setPriority(e.target.value)}
         >
           <Option value="">Select Priority</Option>
           <Option value='low'>low</Option>
