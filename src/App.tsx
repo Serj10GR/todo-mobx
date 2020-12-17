@@ -4,7 +4,6 @@ import GlobalStyle from './globalStyles';
 import { RootStore } from './store/globalStore';
 
 const store = RootStore.create({
-  users: {},
   todos: {}
 });
 

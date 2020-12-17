@@ -1,6 +1,5 @@
 
 import { observer } from "mobx-react-lite"
-import { resetGlobalState } from "mobx/lib/internal";
 
 import { Todo } from '../../../store/globalStore'
 import {
@@ -26,6 +25,7 @@ const Header = ({addTodo}: HeaderProps) => {
       <Form onSubmit={e => {
         e.preventDefault()
         addTodo(randomId(), todo.name, todo.priority)
+        todo.reset()
       }}>
         <Input 
           required 
@@ -37,13 +37,14 @@ const Header = ({addTodo}: HeaderProps) => {
           required 
           name="priority" 
           onChange={e => todo.setPriority(e.target.value)}
+          value={todo.priority}
         >
           <Option value="">Select Priority</Option>
           <Option value='low'>low</Option>
           <Option value='medium'>medium</Option>
           <Option value="high">high</Option>
         </Select>
-        <Button>Add new Task</Button>
+        <Button type='submit'>Add new Task</Button>
       </Form>
     </HeaderWrapper>
   )

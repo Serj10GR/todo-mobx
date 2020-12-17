@@ -1,4 +1,5 @@
 import { types, destroy } from "mobx-state-tree";
+import { values } from 'mobx'
 
 export const Todo = types
   .model({
@@ -17,15 +18,15 @@ export const Todo = types
     function setPriority(newPriority: string) {
       self.priority = newPriority
     }
-    return { setName, toggle, setPriority };
+    function reset(){
+      self.name=''
+      self.priority=''
+    }
+    return { setName, toggle, setPriority, reset };
+    
   });
 
 
-
-
-const User = types.model({
-  name: types.optional(types.string, "")
-});
 
 
 
@@ -33,7 +34,6 @@ const User = types.model({
 
 export const RootStore = types
   .model({
-    users: types.map(User),
     todos: types.map(Todo)
   })
   .actions(self => {
@@ -43,5 +43,9 @@ export const RootStore = types
     function removeTodo(todo) {
       destroy(todo)
     }
-    return { addTodo, removeTodo };
-  });
+    function getTodosLength(){
+      return values(self.todos).length
+    }
+    return { addTodo, removeTodo, getTodosLength };
+  })
+  

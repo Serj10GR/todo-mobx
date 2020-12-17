@@ -6,9 +6,14 @@ import {
   Row,
  } from './styled'
 
-const InfoBlock = () => {
+const InfoBlock = ({store}) => {
+  const todosAmount = store.getTodosLength()
   return (
     <BlockWrapper>
+      <Title>{todosAmount? 'Your Tasks' : 'No Tasks'}</Title>
+      {todosAmount > 0 &&
+        <Row>Total Tasks: {todosAmount}</Row>
+      }
       
 
       
