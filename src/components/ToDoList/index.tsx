@@ -11,8 +11,8 @@ const ToDoList = ({store}) => {
   return (
     <ListWrapper>
       <Header addTodo={store.addTodo} />
-      {values(store.todos).map(todo => (
-        <ToDo todo={todo} />
+      {values(store.todos).map((todo, i) => (
+        <ToDo key={i} todo={todo} store={store} />
       ))}
       
     </ListWrapper>

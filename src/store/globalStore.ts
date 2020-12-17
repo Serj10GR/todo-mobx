@@ -1,4 +1,4 @@
-import { types } from "mobx-state-tree";
+import { types, destroy } from "mobx-state-tree";
 
 export const Todo = types
   .model({
@@ -17,6 +17,7 @@ export const Todo = types
     function setPriority(newPriority) {
       self.priority = newPriority
     }
+    
 
     return { setName, toggle, setPriority };
   });
@@ -41,6 +42,8 @@ export const RootStore = types
     function addTodo(id, name, priority) {
       self.todos.set(id, Todo.create({ name, priority}));
     }
-
-    return { addTodo };
+    function removeTodo(todo) {
+      destroy(todo)
+    }
+    return { addTodo, removeTodo };
   });

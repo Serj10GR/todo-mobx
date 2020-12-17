@@ -5,16 +5,7 @@ import { RootStore } from './store/globalStore';
 
 const store = RootStore.create({
   users: {},
-  todos: {
-    "1": {
-      name: "Eat a cake",
-      done: true,
-    },
-    "2": {
-      name: 'run',
-      done: false,
-    }
-  }
+  todos: {}
 });
 
 const App =() => {
