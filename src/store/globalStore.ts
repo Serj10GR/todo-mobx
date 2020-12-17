@@ -7,18 +7,16 @@ export const Todo = types
     priority: types.optional(types.string, "")
   })
   .actions(self => {
-    function setName(newName) {
+    function setName(newName: string) {
       self.name = newName;
     }
 
     function toggle() {
       self.done = !self.done;
     }
-    function setPriority(newPriority) {
+    function setPriority(newPriority: string) {
       self.priority = newPriority
     }
-    
-
     return { setName, toggle, setPriority };
   });
 
@@ -39,7 +37,7 @@ export const RootStore = types
     todos: types.map(Todo)
   })
   .actions(self => {
-    function addTodo(id, name, priority) {
+    function addTodo(id: string, name: string, priority: string) {
       self.todos.set(id, Todo.create({ name, priority}));
     }
     function removeTodo(todo) {

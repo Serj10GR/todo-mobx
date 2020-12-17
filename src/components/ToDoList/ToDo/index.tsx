@@ -1,7 +1,12 @@
 
 import { observer } from "mobx-react"
 
-import {TodoWrapper, TodoText} from './styled'
+import {
+  TodoWrapper,
+  TodoText,
+  DeleteIcon,
+  DeleteButton,
+} from './styled'
 
 type ToDoProps = {
   todo: any,
@@ -15,7 +20,7 @@ const ToDo = ({todo, store}: ToDoProps) => (
       onChange={e => todo.toggle()}
     />
     <TodoText done={todo.done}>{todo.name}</TodoText>
-    <button onClick={() => store.removeTodo(todo)}>Delete</button>
+    <DeleteButton onClick={() => store.removeTodo(todo)}><DeleteIcon /></DeleteButton>
   </TodoWrapper>
 )
 
