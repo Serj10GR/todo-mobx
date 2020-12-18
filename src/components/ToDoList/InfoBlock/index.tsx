@@ -1,4 +1,5 @@
 import React from 'react'
+import { TRootStore } from 'store/globalStore'
 
 import { 
   BlockWrapper,
@@ -6,7 +7,11 @@ import {
   Row,
  } from './styled'
 
-const InfoBlock = ({store}) => {
+ type  TInforBlock = {
+   store: TRootStore
+ }
+
+const InfoBlock = ({store}: TInforBlock) => {
   const todosAmount = store.getTodosLength()
   return (
     <BlockWrapper>
@@ -14,6 +19,7 @@ const InfoBlock = ({store}) => {
       {todosAmount > 0 &&
         <Row>Total Tasks: {todosAmount}</Row>
       }
+
       
 
       

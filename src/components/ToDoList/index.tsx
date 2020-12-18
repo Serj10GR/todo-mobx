@@ -7,8 +7,13 @@ import ToDo from './ToDo'
 import InfoBlock from './InfoBlock'
 
 import {ListWrapper} from './styled'
+import {TRootStore} from '../../store/globalStore'
 
-const ToDoList = ({store}) => {
+type TToDoList = {
+  store: TRootStore
+}
+
+const ToDoList = ({store} : TToDoList) => {
   return (
     <ListWrapper>
       <Header addTodo={store.addTodo} />
