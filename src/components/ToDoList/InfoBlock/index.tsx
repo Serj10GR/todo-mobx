@@ -1,5 +1,6 @@
-import React from 'react'
+import {Fragment} from 'react'
 import { TRootStore } from 'store/globalStore'
+import { observer } from "mobx-react-lite"
 
 import { 
   BlockWrapper,
@@ -16,15 +17,16 @@ const InfoBlock = ({store}: TInforBlock) => {
   return (
     <BlockWrapper>
       <Title>{todosAmount? 'Your Tasks' : 'No Tasks'}</Title>
-      {todosAmount > 0 &&
+      {todosAmount > 0 
+        &&
+       <Fragment>
         <Row>Total Tasks: {todosAmount}</Row>
+        <Row>Done: {store.getDoneTodos()}</Row>
+        <Row>ToDo: {todosAmount - store.getDoneTodos()}</Row>
+       </Fragment>  
       }
-
-      
-
-      
     </BlockWrapper>
   )
 }
 
-export default InfoBlock
+export default observer(InfoBlock)

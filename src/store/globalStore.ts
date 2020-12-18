@@ -41,10 +41,21 @@ export const RootStore = types
       destroy(todo)
     }
     return { addTodo, removeTodo };
-  }).views(self => ({
+  })
+  .views(self => ({
     getTodosLength() {
       return values(self.todos).length
     },
+    getDoneTodos(){
+      const doneTodos:Array<TTodo> = []
+      self.todos.forEach(todo => {
+       if(todo.done) {
+         doneTodos.push(todo)
+       }
+      })
+      return doneTodos.length
+    }
+
 
   }))
   
