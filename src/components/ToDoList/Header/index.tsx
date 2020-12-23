@@ -1,7 +1,7 @@
-
 import { observer } from "mobx-react-lite"
 
-import { Todo } from '../../../store/globalStore'
+import { Todo } from '../../../store/todoStore'
+
 import {
   HeaderWrapper,
   Form,
