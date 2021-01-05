@@ -13,3 +13,8 @@ export const Title = styled.h2`
 export const Row = styled.div`
  align-self: flex-end;
 `
+export const InfoInner = styled.div`
+margin-top: 25px;
+ display: flex;
+ justify-content: space-around;
+`

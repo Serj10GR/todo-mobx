@@ -1,11 +1,9 @@
 import styled from 'styled-components'
-
 import { AiFillDelete } from "react-icons/ai";
 
 type TodoWrapperTypes = {
   priority: string
 }
-
 
 export const TodoWrapper = styled.div<TodoWrapperTypes>`
   width: 100%;
@@ -13,9 +11,13 @@ export const TodoWrapper = styled.div<TodoWrapperTypes>`
   margin-bottom: 1em;
   background-color: #fff;
   position: relative;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 5px #000000;
 
   border: ${props => {
     if (props.priority === 'low') return '1px solid yellow'
+    if (props.priority === 'high') return '1px solid red'
+    else return '1px solid blue'
   }};
 
   :last-of-type {
@@ -38,8 +40,11 @@ export const DeleteIcon = styled(AiFillDelete)`
 `
 export const DeleteButton = styled.button`
  position: absolute;
- right: 5px;
+ right: 20px;
  border: none;
  background-color: #fff;
  cursor: pointer;
+`
+export const CheckBoxInput = styled.input`
+ margin-right: 10px;
 `

@@ -1,7 +1,9 @@
-
+import { TRootStore } from '../../../store/globalStore'
+import { TTodo } from '../../../store/todoStore'
 import { observer } from "mobx-react"
 
 import {
+  CheckBoxInput,
   TodoWrapper,
   TodoText,
   DeleteIcon,
@@ -9,12 +11,12 @@ import {
 } from './styled'
 
 type ToDoProps = {
-  todo: any,
-  store: any,
+  todo: TTodo | any,
+  store: TRootStore,
 }
 const ToDo = ({todo, store}: ToDoProps) => (
   <TodoWrapper priority={todo.priority} >
-    <input
+    <CheckBoxInput
       type="checkbox"
       checked={todo.done}
       onChange={e => todo.toggle()}
