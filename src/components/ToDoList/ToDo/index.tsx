@@ -3,7 +3,9 @@ import { TTodo } from '../../../store/todoStore'
 import { observer } from "mobx-react"
 
 import {
+  CheckBoxWrapper,
   CheckBoxInput,
+  Mark,
   TodoWrapper,
   TodoText,
   DeleteIcon,
@@ -16,11 +18,14 @@ type ToDoProps = {
 }
 const ToDo = ({todo, store}: ToDoProps) => (
   <TodoWrapper priority={todo.priority} >
-    <CheckBoxInput
-      type="checkbox"
-      checked={todo.done}
-      onChange={e => todo.toggle()}
-    />
+    <CheckBoxWrapper>
+      <CheckBoxInput
+        type="checkbox"
+        checked={todo.done}
+        onChange={e => todo.toggle()}
+      />
+      <Mark />
+    </CheckBoxWrapper>
     <TodoText done={todo.done}>{todo.name}</TodoText>
     <DeleteButton onClick={() => store.removeTodo(todo)}><DeleteIcon /></DeleteButton>
   </TodoWrapper>
