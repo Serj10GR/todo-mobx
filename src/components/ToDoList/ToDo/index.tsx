@@ -13,7 +13,7 @@ import {
 } from './styled'
 
 type ToDoProps = {
-  todo: TTodo | any,
+  todo: TTodo,
   store: TRootStore,
 }
 const ToDo = ({todo, store}: ToDoProps) => (

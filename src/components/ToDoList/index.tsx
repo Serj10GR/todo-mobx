@@ -1,5 +1,4 @@
 
-import { values } from "mobx";
 import { observer } from "mobx-react-lite"
 
 import Header from './Header'
@@ -18,7 +17,7 @@ const ToDoList = ({store} : TToDoList) => {
     <ListWrapper>
       <Header addTodo={store.addTodo} />
       <InfoBlock store={store} />
-      {values(store.todos).map((todo, i) => (
+      {store.todos.map((todo, i) => (
         <ToDo key={i} todo={todo} store={store} />
       ))}
       

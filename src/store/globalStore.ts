@@ -6,11 +6,11 @@ import { Todo, TTodo } from './todoStore'
 
 export const RootStore = types
   .model({
-    todos: types.optional(types.map(Todo), {})
+    todos: types.optional(types.array(Todo), [])
   })
   .actions(self => ({
-    addTodo(id: string, name: string, priority: string) {
-      self.todos.set(id, Todo.create({ name, priority}));
+    addTodo(name: string, priority: string) {
+      self.todos.push(Todo.create({ name, priority}));
     },
     removeTodo(todo: TTodo) {
       destroy(todo)

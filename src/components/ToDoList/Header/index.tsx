@@ -13,8 +13,6 @@ import {
 
 const todo = Todo.create({})
 
-const randomId = () => Math.floor(Math.random() * 1000).toString(36);
-
 type HeaderProps = {
   addTodo: any
 }
@@ -24,7 +22,7 @@ const Header = ({addTodo}: HeaderProps) => {
     <HeaderWrapper>
       <Form onSubmit={e => {
         e.preventDefault()
-        addTodo(randomId(), todo.name, todo.priority)
+        addTodo(todo.name, todo.priority)
         todo.reset()
       }}>
         <Input 
