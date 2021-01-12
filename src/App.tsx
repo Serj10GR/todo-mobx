@@ -1,16 +1,16 @@
 import { Fragment } from 'react'
 import ToDoList from './components/ToDoList'
 import GlobalStyle from './globalStyles';
-import { RootStore } from './store/globalStore';
+// import { RootStore } from './store/globalStore';
 
-const store = RootStore.create({});
+// const store = RootStore.create({});
 
 const App =() => {
  
 return (
   <Fragment>
     <GlobalStyle />
-    <ToDoList store={store} />
+    <ToDoList/>
   </Fragment>
 );
 }

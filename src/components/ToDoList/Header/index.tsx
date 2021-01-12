@@ -1,5 +1,6 @@
+import type { FormEvent } from 'react'
 import { observer } from "mobx-react-lite"
-import { Todo } from '../../../store/todoStore'
+import { useStore } from '../../../hooks/useStore'
 
 import {
   HeaderWrapper,
@@ -10,22 +11,22 @@ import {
   Button
 } from './styled'
 
-const todo = Todo.create({})
 
-const randomId = () => Math.floor(Math.random() * 1000).toString(36);
 
-type HeaderProps = {
-  addTodo: Function
-}
-const Header = ({addTodo}: HeaderProps) => {
+
+const Header = () => {
+  const {todo, rootStore: {addTodo}} = useStore()
+  const randomId = () => Math.floor(Math.random() * 1000).toString(36);
+
+  const submitHandler = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    addTodo(randomId(), todo.name, todo.priority)
+    todo.reset()
+  }
 
   return (
     <HeaderWrapper>
-      <Form onSubmit={e => {
-        e.preventDefault()
-        addTodo(randomId(),todo.name, todo.priority)
-        todo.reset()
-      }}>
+      <Form onSubmit={e => submitHandler(e)}>
         <Input 
           required 
           type="text" 

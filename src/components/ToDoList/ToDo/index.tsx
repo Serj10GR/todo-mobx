@@ -1,6 +1,6 @@
-import { TRootStore } from '../../../store/globalStore'
-import { TTodo } from '../../../store/todoStore'
 import { observer } from "mobx-react"
+import { TTodo } from '../../../store/todoStore'
+import { useStore } from '../../../hooks/useStore'
 
 import {
   CheckBoxWrapper,
@@ -14,22 +14,26 @@ import {
 
 type ToDoProps = {
   todo: TTodo,
-  store: TRootStore,
 }
-const ToDo = ({todo, store}: ToDoProps) => (
-  <TodoWrapper priority={todo.priority} >
-    <CheckBoxWrapper>
-      <CheckBoxInput
-        type="checkbox"
-        checked={todo.done}
-        onChange={e => todo.toggle()}
-      />
-      <Mark />
-    </CheckBoxWrapper>
-    <TodoText done={todo.done}>{todo.name}</TodoText>
-    <DeleteButton onClick={() => store.removeTodo(todo)}><DeleteIcon /></DeleteButton>
-  </TodoWrapper>
-)
+const ToDo = ({todo}: ToDoProps) => {
+  const { rootStore: {removeTodo}} = useStore()
+  return (
+    <TodoWrapper priority={todo.priority} >
+      <CheckBoxWrapper>
+        <CheckBoxInput
+          type="checkbox"
+          checked={todo.done}
+          onChange={e => todo.toggle()}
+        />
+        <Mark />
+      </CheckBoxWrapper>
+      <TodoText done={todo.done}>{todo.name}</TodoText>
+      <DeleteButton onClick={() => removeTodo(todo)}><DeleteIcon /></DeleteButton>
+    </TodoWrapper>
+
+  )
+  
+}
 
 
 export default observer(ToDo)

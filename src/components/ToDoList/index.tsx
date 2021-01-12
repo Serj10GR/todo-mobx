@@ -1,24 +1,25 @@
-
 import { observer } from "mobx-react-lite"
 
 import Header from './Header'
 import ToDo from './ToDo'
 import InfoBlock from './InfoBlock'
 
-import {ListWrapper} from './styled'
-import {TRootStore} from '../../store/globalStore'
+import { ListWrapper } from './styled'
 
-type TToDoList = {
-  store: TRootStore
-}
+import { useStore } from '../../hooks/useStore'
+import { TTodo } from '../../store/todoStore'
 
-const ToDoList = ({store} : TToDoList) => {
+
+const ToDoList = () => {
+
+  const { rootStore } = useStore()
+
   return (
     <ListWrapper>
-      <Header addTodo={store.addTodo} />
-      <InfoBlock store={store} />
-      {store.todos.map((todo, i) => (
-        <ToDo key={todo.id} todo={todo} store={store} />
+      <Header/> 
+      <InfoBlock />
+      {rootStore.todos.map((todo: TTodo) => (
+        <ToDo key={todo.id} todo={todo}/>
       ))}
       
     </ListWrapper>

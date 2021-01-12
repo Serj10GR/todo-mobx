@@ -32,3 +32,4 @@ export const RootStore = types
   
 
 export interface TRootStore extends Instance<typeof RootStore> {}
+

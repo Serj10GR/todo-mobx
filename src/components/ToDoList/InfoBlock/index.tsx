@@ -1,5 +1,5 @@
-import { TRootStore } from 'store/globalStore'
 import { observer } from "mobx-react-lite"
+import { useStore } from '../../../hooks/useStore'
 
 import { 
   BlockWrapper,
@@ -8,12 +8,11 @@ import {
   InfoInner,
  } from './styled'
 
- type  TInforBlock = {
-   store: TRootStore
- }
 
-const InfoBlock = ({store}: TInforBlock) => {
-  const todosAmount = store.getTodosLength()
+const InfoBlock = () => {
+  const {rootStore :{ getTodosLength, getDoneTodos }} = useStore()
+  const todosAmount = getTodosLength()
+
   return (
     <BlockWrapper>
       <Title>{todosAmount? 'Your Tasks' : 'No Tasks'}</Title>
@@ -21,8 +20,8 @@ const InfoBlock = ({store}: TInforBlock) => {
         &&
        <InfoInner>
         <Row>Total Tasks: {todosAmount}</Row>
-        <Row>Done: {store.getDoneTodos()}</Row>
-        <Row>ToDo: {todosAmount - store.getDoneTodos()}</Row>
+        <Row>Done: {getDoneTodos()}</Row>
+        <Row>ToDo: {todosAmount - getDoneTodos()}</Row>
        </InfoInner>  
       }
     </BlockWrapper>
