@@ -12,8 +12,6 @@ import {
 } from './styled'
 
 
-
-
 const Header = () => {
   const {todo, rootStore: {addTodo}} = useStore()
   const randomId = () => Math.floor(Math.random() * 1000).toString(36);
