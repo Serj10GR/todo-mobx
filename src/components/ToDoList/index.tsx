@@ -11,17 +11,15 @@ import { TTodo } from '../../store/todoStore'
 
 
 const ToDoList = () => {
-
-  const { rootStore } = useStore()
+  const { rootStore : { todos }} = useStore()
 
   return (
     <ListWrapper>
       <Header/> 
       <InfoBlock />
-      {rootStore.todos.map((todo: TTodo) => (
+      {todos.map((todo: TTodo) => (
         <ToDo key={todo.id} todo={todo}/>
-      ))}
-      
+      ))}     
     </ListWrapper>
   )
 }
