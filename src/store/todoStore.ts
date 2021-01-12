@@ -2,6 +2,7 @@ import { types, Instance } from "mobx-state-tree";
 
 export const Todo = types
   .model({
+    id: types.optional(types.string, ""),
     name: types.optional(types.string, ""),
     done: types.optional(types.boolean, false),
     priority: types.optional(types.string, "")
@@ -25,4 +26,4 @@ export const Todo = types
     }
   }))
 
-export type TTodo = Instance<typeof Todo>
+export interface TTodo extends Instance<typeof Todo> {}

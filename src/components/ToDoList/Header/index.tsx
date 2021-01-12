@@ -1,5 +1,4 @@
 import { observer } from "mobx-react-lite"
-
 import { Todo } from '../../../store/todoStore'
 
 import {
@@ -13,8 +12,10 @@ import {
 
 const todo = Todo.create({})
 
+const randomId = () => Math.floor(Math.random() * 1000).toString(36);
+
 type HeaderProps = {
-  addTodo: any
+  addTodo: Function
 }
 const Header = ({addTodo}: HeaderProps) => {
 
@@ -22,7 +23,7 @@ const Header = ({addTodo}: HeaderProps) => {
     <HeaderWrapper>
       <Form onSubmit={e => {
         e.preventDefault()
-        addTodo(todo.name, todo.priority)
+        addTodo(randomId(),todo.name, todo.priority)
         todo.reset()
       }}>
         <Input 

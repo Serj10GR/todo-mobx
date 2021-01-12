@@ -9,8 +9,8 @@ export const RootStore = types
     todos: types.optional(types.array(Todo), [])
   })
   .actions(self => ({
-    addTodo(name: string, priority: string) {
-      self.todos.push(Todo.create({ name, priority}));
+    addTodo(id:string, name: string, priority: string) {
+      self.todos.push(Todo.create({id, name, priority}));
     },
     removeTodo(todo: TTodo) {
       destroy(todo)
@@ -21,15 +21,14 @@ export const RootStore = types
       return values(self.todos).length
     },
     getDoneTodos(){
-      const doneTodos:Array<TTodo> = []
-      self.todos.forEach(todo => {
+      return self.todos.reduce((acc, todo) => {
        if(todo.done) {
-         doneTodos.push(todo)
+         acc += 1
        }
-      })
-      return doneTodos.length
+       return acc
+      }, 0)
     }
   }))
   
 
-export type TRootStore = Instance<typeof RootStore>
+export interface TRootStore extends Instance<typeof RootStore> {}

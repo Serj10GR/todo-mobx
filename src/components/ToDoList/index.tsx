@@ -18,7 +18,7 @@ const ToDoList = ({store} : TToDoList) => {
       <Header addTodo={store.addTodo} />
       <InfoBlock store={store} />
       {store.todos.map((todo, i) => (
-        <ToDo key={i} todo={todo} store={store} />
+        <ToDo key={todo.id} todo={todo} store={store} />
       ))}
       
     </ListWrapper>
